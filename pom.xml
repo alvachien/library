@@ -15,6 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<olingo.version>4.9.0</olingo.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -36,6 +37,28 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>odata-commons-api</artifactId>
+			<version>${olingo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>odata-commons-core</artifactId>
+			<version>${olingo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>odata-server-api</artifactId>
+			<version>${olingo.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>odata-server-core</artifactId>
+			<version>${olingo.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 
