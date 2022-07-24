@@ -1,4 +1,4 @@
-package com.alvachien.library.edm;
+package com.alvachien.libraryapi.edm;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -18,19 +18,19 @@ import org.apache.olingo.server.api.uri.UriParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.alvachien.library.model.Author;
-import com.alvachien.library.repository.AuthorRepository;
-import com.alvachien.library.util.Constants;
+import com.alvachien.libraryapi.model.Person;
+import com.alvachien.libraryapi.repository.PersonRepository;
+import com.alvachien.libraryapi.util.Constants;
 
 @Component
 public class ODataStorage {
     @Autowired
-    private AuthorRepository authorRepository;
+    private PersonRepository authorRepository;
 
     public EntityCollection readEntitySetData(EdmEntitySet edmEntitySet) throws ODataApplicationException {
 
         // actually, this is only required if we have more than one Entity Sets
-        if (edmEntitySet.getName().equals(Constants.ES_AUTHORS_NAME)) {
+        if (edmEntitySet.getName().equals(Constants.ES_PERSONS_NAME)) {
             return getAuthorEntityCollection();
         }
 
@@ -43,7 +43,7 @@ public class ODataStorage {
         EdmEntityType edmEntityType = edmEntitySet.getEntityType();
 
         // actually, this is only required if we have more than one Entity Type
-        if (edmEntityType.getName().equals(Constants.ET_AUTHOR_NAME)) {
+        if (edmEntityType.getName().equals(Constants.ET_PERSON_NAME)) {
             return getAuthorEntity(edmEntityType, keyParams);
         }
 
@@ -54,14 +54,14 @@ public class ODataStorage {
     private EntityCollection getAuthorEntityCollection() {
         EntityCollection retEntitySet = new EntityCollection();
 
-        for (Author author : this.authorRepository.findAll()) {
+        for (Person author : this.authorRepository.findAll()) {
             retEntitySet.getEntities().add(getEntityFromAuthor(author));
         }
 
         return retEntitySet;
     }
 
-    private Entity getEntityFromAuthor(Author author) {        
+    private Entity getEntityFromAuthor(Person author) {        
         final Entity e1 = new Entity().addProperty(new Property("int", "ID", ValueType.PRIMITIVE, author.getId()))
 						.addProperty(new Property("String", "NativeName", ValueType.PRIMITIVE, author.getNativeName()))
 						.addProperty(new Property("String", "ChineseName", ValueType.PRIMITIVE, author.getChineseName()))

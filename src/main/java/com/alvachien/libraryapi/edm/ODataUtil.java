@@ -1,4 +1,4 @@
-package com.alvachien.library.edm;
+package com.alvachien.libraryapi.edm;
 
 import java.util.List;
 import java.util.Locale;

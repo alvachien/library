@@ -1,5 +1,5 @@
-# library
-An application for library: books, movies
+# libraryapi
+An API for library: books, person, and movies.
 
 # Credits
 - Spring Boot

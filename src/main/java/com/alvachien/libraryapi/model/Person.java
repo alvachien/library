@@ -1,23 +1,25 @@
-package com.alvachien.library.model;
+package com.alvachien.libraryapi.model;
 
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Author {
-    private @Id @GeneratedValue Long id;
+public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    private Long id;
     private String nativeName;
-
     private String chineseName;
     private String detail;
 
-    Author() {
+    Person() {
     }
 
-    Author(String nativeName, String chineseName, String detail) {
+    Person(String nativeName, String chineseName, String detail) {
         this.nativeName = nativeName;
         this.chineseName = chineseName;
         this.detail = detail;
@@ -60,9 +62,9 @@ public class Author {
 
         if (this == o)
             return true;
-        if (!(o instanceof Author))
+        if (!(o instanceof Person))
             return false;
-        Author author = (Author) o;
+        Person author = (Person) o;
         return Objects.equals(this.id, author.id) && Objects.equals(this.nativeName, author.nativeName)
                 && Objects.equals(this.chineseName, author.chineseName) && Objects.equals(this.detail, author.detail);
     }

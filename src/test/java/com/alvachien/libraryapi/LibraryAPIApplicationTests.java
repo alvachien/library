@@ -1,10 +1,10 @@
-package com.alvachien.library;
+package com.alvachien.libraryapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LibraryApplicationTests {
+class LibraryAPIApplicationTests {
 
 	@Test
 	void contextLoads() {

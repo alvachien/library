@@ -1,4 +1,4 @@
-package com.alvachien.library.edm;
+package com.alvachien.libraryapi.edm;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ import org.apache.olingo.commons.api.edm.provider.CsdlSchema;
 import org.apache.olingo.commons.api.ex.ODataException;
 import org.springframework.stereotype.Component;
 
-import com.alvachien.library.util.Constants;
+import com.alvachien.libraryapi.util.Constants;
 
 @Component
 public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
@@ -26,7 +26,7 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
     public CsdlEntityContainer getEntityContainer() throws ODataException {
         // create EntitySets
         List<CsdlEntitySet> entitySets = new ArrayList<CsdlEntitySet>();
-        entitySets.add(getEntitySet(Constants.CONTAINER, Constants.ES_AUTHORS_NAME));
+        entitySets.add(getEntitySet(Constants.CONTAINER, Constants.ES_PERSONS_NAME));
 
         // create EntityContainer
         CsdlEntityContainer entityContainer = new CsdlEntityContainer();
@@ -51,10 +51,10 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
     @Override
     public CsdlEntitySet getEntitySet(FullQualifiedName entityContainer, String entitySetName) throws ODataException {
         if (entityContainer.equals(Constants.CONTAINER)) {
-            if (entitySetName.equals(Constants.ES_AUTHORS_NAME)) {
+            if (entitySetName.equals(Constants.ES_PERSONS_NAME)) {
                 CsdlEntitySet entitySet = new CsdlEntitySet();
-                entitySet.setName(Constants.ES_AUTHORS_NAME);
-                entitySet.setType(Constants.ET_AUTHOR_FQN);
+                entitySet.setName(Constants.ES_PERSONS_NAME);
+                entitySet.setType(Constants.ET_PERSON_FQN);
 
                 return entitySet;
             }
@@ -67,7 +67,7 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
     public CsdlEntityType getEntityType(FullQualifiedName entityTypeName) throws ODataException {
         // this method is called for one of the EntityTypes that are configured in the
         // Schema
-        if (entityTypeName.equals(Constants.ET_AUTHOR_FQN)) {
+        if (entityTypeName.equals(Constants.ET_PERSON_FQN)) {
 
             // create EntityType properties
             CsdlProperty id = new CsdlProperty().setName("ID")
@@ -85,7 +85,7 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
 
             // configure EntityType
             CsdlEntityType entityType = new CsdlEntityType();
-            entityType.setName(Constants.ET_AUTHOR_NAME);
+            entityType.setName(Constants.ET_PERSON_NAME);
             entityType.setProperties(Arrays.asList(id, nativeName, chineseName, detail));
             entityType.setKey(Collections.singletonList(propertyRef));
 
@@ -103,7 +103,7 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
 
         // add EntityTypes
         List<CsdlEntityType> entityTypes = new ArrayList<CsdlEntityType>();
-        entityTypes.add(getEntityType(Constants.ET_AUTHOR_FQN));
+        entityTypes.add(getEntityType(Constants.ET_PERSON_FQN));
         schema.setEntityTypes(entityTypes);
 
         // add EntityContainer

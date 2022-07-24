@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.alvachien</groupId>
-	<artifactId>library</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>Library</name>
-	<description>Demo project for Spring Boot</description>
+	<artifactId>libraryapi</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
+	<name>Library API</name>
+	<description>OData API for Library, built with Spring Boot and Olingo</description>
 	<properties>
 		<java.version>11</java.version>
 		<olingo.version>4.9.0</olingo.version>
@@ -70,5 +70,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

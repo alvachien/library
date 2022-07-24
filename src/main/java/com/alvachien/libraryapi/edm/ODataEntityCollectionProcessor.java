@@ -1,18 +1,12 @@
-package com.alvachien.library.edm;
+package com.alvachien.libraryapi.edm;
 
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import org.apache.olingo.commons.api.data.ContextURL;
-import org.apache.olingo.commons.api.data.Entity;
 import org.apache.olingo.commons.api.data.EntityCollection;
-import org.apache.olingo.commons.api.data.Property;
-import org.apache.olingo.commons.api.data.ValueType;
 import org.apache.olingo.commons.api.edm.EdmEntitySet;
 import org.apache.olingo.commons.api.edm.EdmEntityType;
-import org.apache.olingo.commons.api.ex.ODataRuntimeException;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.api.http.HttpHeader;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
