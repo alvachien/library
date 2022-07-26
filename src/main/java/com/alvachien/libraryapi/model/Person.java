@@ -1,11 +1,14 @@
 package com.alvachien.libraryapi.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Person {
@@ -15,6 +18,12 @@ public class Person {
     private String nativeName;
     private String chineseName;
     private String detail;
+
+    @ManyToMany(fetch=FetchType.EAGER, mappedBy="authors")
+    private List<Book> books;
+
+    @ManyToMany(fetch=FetchType.EAGER, mappedBy="translators")
+    private List<Book> translatedbooks;
 
     Person() {
     }
@@ -55,6 +64,14 @@ public class Person {
 
     public void setDetail(String detail) {
         this.detail = detail;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public List<Book> getTranslatedbooks() {
+        return translatedbooks;
     }
 
     @Override
