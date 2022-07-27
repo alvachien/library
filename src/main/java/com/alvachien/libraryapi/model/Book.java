@@ -17,6 +17,14 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
     private String nativeName;
+    private String chineseName;
+    private String detail;
+
+    private String originLanguage;
+    private String bookLanguage;
+
+    private int releasedYear;
+
     public Long getId() {
         return id;
     }
@@ -73,14 +81,6 @@ public class Book {
         this.releasedYear = releasedYear;
     }
 
-    private String chineseName;
-    private String detail;
-
-    private String originLanguage;
-    private String bookLanguage;
-
-    private int releasedYear;
-    
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
         name="book_author", 

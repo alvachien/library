@@ -17,7 +17,10 @@ public final class Constants {
 	// Entity Types Names
 	public static final String ET_PERSON_NAME = "Person";
 	public static final FullQualifiedName ET_PERSON_FQN = new FullQualifiedName(NAMESPACE, ET_PERSON_NAME);
+	public static final String ET_BOOK_NAME = "Book";
+	public static final FullQualifiedName ET_BOOK_FQN = new FullQualifiedName(NAMESPACE, ET_BOOK_NAME);
 
 	// Entity Set Names
 	public static final String ES_PERSONS_NAME = "Persons";
+	public static final String ES_BOOKS_NAME = "Books";
 }

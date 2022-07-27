@@ -27,6 +27,7 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
         // create EntitySets
         List<CsdlEntitySet> entitySets = new ArrayList<CsdlEntitySet>();
         entitySets.add(getEntitySet(Constants.CONTAINER, Constants.ES_PERSONS_NAME));
+        entitySets.add(getEntitySet(Constants.CONTAINER, Constants.ES_BOOKS_NAME));
 
         // create EntityContainer
         CsdlEntityContainer entityContainer = new CsdlEntityContainer();
@@ -55,6 +56,12 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
                 CsdlEntitySet entitySet = new CsdlEntitySet();
                 entitySet.setName(Constants.ES_PERSONS_NAME);
                 entitySet.setType(Constants.ET_PERSON_FQN);
+
+                return entitySet;
+            } else if (entitySetName.equals(Constants.ES_BOOKS_NAME)) {
+                CsdlEntitySet entitySet = new CsdlEntitySet();
+                entitySet.setName(Constants.ES_BOOKS_NAME);
+                entitySet.setType(Constants.ET_BOOK_FQN);
 
                 return entitySet;
             }
@@ -90,6 +97,35 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
             entityType.setKey(Collections.singletonList(propertyRef));
 
             return entityType;
+        } else if(entityTypeName.equals(Constants.ET_BOOK_FQN)) {
+            // create EntityType properties
+            CsdlProperty id = new CsdlProperty().setName("ID")
+                    .setType(EdmPrimitiveTypeKind.Int32.getFullQualifiedName());
+            CsdlProperty nativeName = new CsdlProperty().setName("NativeName")
+                    .setType(EdmPrimitiveTypeKind.String.getFullQualifiedName());
+            CsdlProperty chineseName = new CsdlProperty().setName("ChineseName")
+                    .setType(EdmPrimitiveTypeKind.String.getFullQualifiedName());
+            CsdlProperty detail = new CsdlProperty().setName("Detail")
+                    .setType(EdmPrimitiveTypeKind.String.getFullQualifiedName());
+            CsdlProperty originLanguage = new CsdlProperty().setName("OriginLanguage")
+                    .setType(EdmPrimitiveTypeKind.String.getFullQualifiedName());
+            CsdlProperty bookLanguage = new CsdlProperty().setName("BookLanguage")
+                    .setType(EdmPrimitiveTypeKind.String.getFullQualifiedName());
+            CsdlProperty releasedYear = new CsdlProperty().setName("ReleasedYear")
+                    .setType(EdmPrimitiveTypeKind.Int16.getFullQualifiedName());
+        
+            // create CsdlPropertyRef for Key element
+            CsdlPropertyRef propertyRef = new CsdlPropertyRef();
+            propertyRef.setName("ID");
+
+            // configure EntityType
+            CsdlEntityType entityType = new CsdlEntityType();
+            entityType.setName(Constants.ET_PERSON_NAME);
+            entityType.setProperties(Arrays.asList(id, nativeName, chineseName, detail, originLanguage, bookLanguage, releasedYear));
+            entityType.setKey(Collections.singletonList(propertyRef));
+
+            return entityType;
+
         }
 
         return null;
@@ -104,6 +140,7 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
         // add EntityTypes
         List<CsdlEntityType> entityTypes = new ArrayList<CsdlEntityType>();
         entityTypes.add(getEntityType(Constants.ET_PERSON_FQN));
+        entityTypes.add(getEntityType(Constants.ET_BOOK_FQN));
         schema.setEntityTypes(entityTypes);
 
         // add EntityContainer
