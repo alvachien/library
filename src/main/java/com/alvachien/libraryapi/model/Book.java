@@ -2,6 +2,7 @@ package com.alvachien.libraryapi.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,14 +17,24 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
+    @Column(length = 200, nullable = false)
     private String nativeName;
+    @Column(length = 200, nullable = false)
     private String chineseName;
+    @Column(length = 200)
     private String detail;
+    @Column(length = 15)
+    private String isbn;
+    @Column(name = "page_count", nullable = true)
+    private Integer pageCount;
 
+    @Column(length = 5, nullable = true)
     private String originLanguage;
+    @Column(name = "book_language", length = 5, nullable = true)
     private String bookLanguage;
 
-    private int releasedYear;
+    @Column(name = "released_year", nullable = true)
+    private Integer releasedYear;
 
     public Long getId() {
         return id;
@@ -77,9 +88,25 @@ public class Book {
         return releasedYear;
     }
 
-    public void setReleasedYear(int releasedYear) {
+    public void setReleasedYear(Integer releasedYear) {
         this.releasedYear = releasedYear;
     }
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(Integer pageCount) {
+        this.pageCount = pageCount;
+    }
+
 
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(

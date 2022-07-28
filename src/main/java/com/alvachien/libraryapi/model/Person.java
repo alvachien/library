@@ -3,6 +3,7 @@ package com.alvachien.libraryapi.model;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,8 +16,11 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
+    @Column(length = 200, nullable = false)
     private String nativeName;
+    @Column(length = 200, nullable = false)
     private String chineseName;
+    @Column(length = 200)
     private String detail;
 
     @ManyToMany(fetch=FetchType.EAGER, mappedBy="authors")
@@ -81,9 +85,9 @@ public class Person {
             return true;
         if (!(o instanceof Person))
             return false;
-        Person author = (Person) o;
-        return Objects.equals(this.id, author.id) && Objects.equals(this.nativeName, author.nativeName)
-                && Objects.equals(this.chineseName, author.chineseName) && Objects.equals(this.detail, author.detail);
+        Person person = (Person) o;
+        return Objects.equals(this.id, person.id) && Objects.equals(this.nativeName, person.nativeName)
+                && Objects.equals(this.chineseName, person.chineseName) && Objects.equals(this.detail, person.detail);
     }
 
     @Override
@@ -93,7 +97,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Author{" + "id=" + this.id + ", nativeName='" + this.nativeName + '\'' + ", chineseName='"
+        return "Person{" + "id=" + this.id + ", nativeName='" + this.nativeName + '\'' + ", chineseName='"
                 + this.chineseName + '\'' + '}';
     }
 }

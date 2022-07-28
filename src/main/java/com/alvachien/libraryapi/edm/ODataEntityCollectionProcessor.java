@@ -34,7 +34,6 @@ public class ODataEntityCollectionProcessor implements EntityCollectionProcessor
 	@Autowired
     private ODataStorage storage;
 
-
 	public void init(OData odata, ServiceMetadata serviceMetadata) {
 		this.odata = odata;
 		this.serviceMetadata = serviceMetadata;
