@@ -1,12 +1,12 @@
-package com.alvachien.libraryapi.util;
+package com.alvachien.libraryapi.edm;
 
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
 
-public final class Constants {
-	private Constants() {
-        throw new IllegalStateException("Utility class");
-    }
-	
+public final class ODataConstants {
+	private ODataConstants() {
+		throw new IllegalStateException("Utility class");
+	}
+
 	// Service Namespace
 	public static final String NAMESPACE = "AlvaChien.Library";
 
@@ -23,4 +23,16 @@ public final class Constants {
 	// Entity Set Names
 	public static final String ES_PERSONS_NAME = "Persons";
 	public static final String ES_BOOKS_NAME = "Books";
+
+	// Action
+	public static final String ACTION_RESET = "Reset";
+	public static final FullQualifiedName ACTION_RESET_FQN = new FullQualifiedName(NAMESPACE, ACTION_RESET);
+
+	// Function
+	public static final String FUNCTION_COUNT_CATEGORIES = "CountCategories";
+	public static final FullQualifiedName FUNCTION_COUNT_CATEGORIES_FQN = new FullQualifiedName(NAMESPACE,
+			FUNCTION_COUNT_CATEGORIES);
+
+	// Function/Action Parameters
+	public static final String PARAMETER_AMOUNT = "Amount";
 }

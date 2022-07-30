@@ -8,7 +8,6 @@ import org.apache.olingo.commons.api.data.ContextURL;
 import org.apache.olingo.commons.api.data.Entity;
 import org.apache.olingo.commons.api.data.Property;
 import org.apache.olingo.commons.api.edm.EdmEntitySet;
-import org.apache.olingo.commons.api.edm.EdmEntityType;
 import org.apache.olingo.commons.api.edm.EdmPrimitiveType;
 import org.apache.olingo.commons.api.edm.EdmProperty;
 import org.apache.olingo.commons.api.format.ContentType;
@@ -20,9 +19,8 @@ import org.apache.olingo.server.api.ODataLibraryException;
 import org.apache.olingo.server.api.ODataRequest;
 import org.apache.olingo.server.api.ODataResponse;
 import org.apache.olingo.server.api.ServiceMetadata;
-import org.apache.olingo.server.api.processor.EntityProcessor;
+import org.apache.olingo.server.api.deserializer.DeserializerException;
 import org.apache.olingo.server.api.processor.PrimitiveProcessor;
-import org.apache.olingo.server.api.serializer.EntitySerializerOptions;
 import org.apache.olingo.server.api.serializer.ODataSerializer;
 import org.apache.olingo.server.api.serializer.PrimitiveSerializerOptions;
 import org.apache.olingo.server.api.serializer.SerializerException;
@@ -32,17 +30,19 @@ import org.apache.olingo.server.api.uri.UriParameter;
 import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.UriResourceEntitySet;
 import org.apache.olingo.server.api.uri.UriResourceProperty;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.stereotype.Component;
+
+// @Component
 public class ODataEntityPrimitiveProcessor implements PrimitiveProcessor {
     private OData odata;
-    @Autowired
-    private ODataStorage storage;
     private ServiceMetadata serviceMetadata;
+    // @Autowired
+    private ODataStorage storage;
 
-    public ODataEntityPrimitiveProcessor() {
+    public ODataEntityPrimitiveProcessor(ODataStorage storage) {
+        this.storage = storage;
     }
 
     public void init(OData odata, ServiceMetadata serviceMetadata) {
@@ -109,17 +109,13 @@ public class ODataEntityPrimitiveProcessor implements PrimitiveProcessor {
         }
     }
 
-    @Override
-    public void deletePrimitive(ODataRequest arg0, ODataResponse arg1, UriInfo arg2)
-            throws ODataApplicationException, ODataLibraryException {
-        // TODO Auto-generated method stub
-        
-    }
+	public void updatePrimitive(ODataRequest request, ODataResponse response, UriInfo uriInfo, ContentType requestFormat, 
+	    ContentType responseFormat) throws ODataApplicationException, DeserializerException, SerializerException {
+		throw new ODataApplicationException("Not supported.", HttpStatusCode.NOT_IMPLEMENTED.getStatusCode(), Locale.ROOT);
+	}
 
-    @Override
-    public void updatePrimitive(ODataRequest arg0, ODataResponse arg1, UriInfo arg2, ContentType arg3, ContentType arg4)
-            throws ODataApplicationException, ODataLibraryException {
-        // TODO Auto-generated method stub
-        
-    }
+	public void deletePrimitive(ODataRequest request, ODataResponse response, UriInfo uriInfo) 
+	    throws ODataApplicationException {
+		throw new ODataApplicationException("Not supported.", HttpStatusCode.NOT_IMPLEMENTED.getStatusCode(), Locale.ROOT);
+	}
 }
