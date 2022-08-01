@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
@@ -28,6 +30,13 @@ public class Person {
 
     @ManyToMany(fetch=FetchType.EAGER, mappedBy="translators")
     private List<Book> translatedbooks;
+
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(
+        name="person_roles", 
+        joinColumns={ @JoinColumn(name = "person_id", referencedColumnName = "id") },
+        inverseJoinColumns={@JoinColumn(name="role_id",referencedColumnName="id")} )
+    private List<PersonRole> roles;
 
     Person() {
     }

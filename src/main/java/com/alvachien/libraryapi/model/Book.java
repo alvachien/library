@@ -1,5 +1,6 @@
 package com.alvachien.libraryapi.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -36,6 +37,39 @@ public class Book {
     @Column(name = "released_year", nullable = true)
     private Integer releasedYear;
 
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(
+        name="book_author", 
+        joinColumns={@JoinColumn(name="book_id",referencedColumnName="id")},
+        inverseJoinColumns={@JoinColumn(name="author_id",referencedColumnName="id")} )
+    private List<Person> authors;
+
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(
+        name="book_translator", 
+        joinColumns={@JoinColumn(name="book_id",referencedColumnName="id")},
+        inverseJoinColumns={@JoinColumn(name="author_id",referencedColumnName="id")} )
+    private List<Person> translators;
+
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(
+        name="book_press", 
+        joinColumns={@JoinColumn(name="book_id",referencedColumnName="id")},
+        inverseJoinColumns={@JoinColumn(name="org_id",referencedColumnName="id")} )
+    private List<Organization> publishHouses;
+
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(
+        name="book_category", 
+        joinColumns={@JoinColumn(name="book_id",referencedColumnName="id")},
+        inverseJoinColumns={@JoinColumn(name="ctgy_id",referencedColumnName="id")} )
+    private List<BookCategory> categories;
+
+    public Book() {
+        this.authors = new ArrayList<>();
+        this.translators = new ArrayList<>();
+        this.publishHouses = new ArrayList<>();
+    }
     public Long getId() {
         return id;
     }
@@ -107,20 +141,9 @@ public class Book {
         this.pageCount = pageCount;
     }
 
-
-    @ManyToMany(fetch=FetchType.EAGER)
-    @JoinTable(
-        name="book_author", 
-        joinColumns={@JoinColumn(name="book_id",referencedColumnName="id")},
-        inverseJoinColumns={@JoinColumn(name="author_id",referencedColumnName="id")} )
-    private List<Person> authors;
-
-    @ManyToMany(fetch=FetchType.EAGER)
-    @JoinTable(
-        name="book_author", 
-        joinColumns={@JoinColumn(name="book_id",referencedColumnName="id")},
-        inverseJoinColumns={@JoinColumn(name="author_id",referencedColumnName="id")} )
-    private List<Person> translators;
+    public List<Organization> getPublishHouses() {
+        return publishHouses;
+    }
 
     public List<Person> getAuthors() {
         return authors;

@@ -1,11 +1,10 @@
 package com.alvachien.libraryapi.model;
-
 import javax.persistence.AttributeConverter;
 
-public class PersonRoleConverter implements AttributeConverter<PersonRole, Character> {
+public class BookCategoryEnumConverter implements AttributeConverter<BookCategoryEnum, Character> {
  
     @Override
-    public Character convertToDatabaseColumn(PersonRole role) {
+    public Character convertToDatabaseColumn(BookCategoryEnum role) {
         if ( role == null ) {
             return null;
         }
@@ -14,12 +13,12 @@ public class PersonRoleConverter implements AttributeConverter<PersonRole, Chara
     }
  
     @Override
-    public PersonRole convertToEntityAttribute(Character value) {
+    public BookCategoryEnum convertToEntityAttribute(Character value) {
         if ( value == null ) {
             return null;
         }
  
-        return PersonRole.fromCode( value );
+        return BookCategoryEnum.fromCode( value );
     }
+    
 }
-
