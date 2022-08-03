@@ -8,14 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.alvachien.libraryapi.model.BookCategory;
-import com.alvachien.libraryapi.model.BookCategoryEnum;
+import com.alvachien.libraryapi.model.PersonRole;
+import com.alvachien.libraryapi.model.PersonRoleEnum;
 
 @SpringBootTest
 @ActiveProfiles("unittest")
-public class BookCategoryControllerTest {
+public class PersonRoleControllerTest {
     @Autowired
-    private BookCategoryController controller;
+    private PersonRoleController controller;
     
     @BeforeEach
     void beforeEach() {        
@@ -23,15 +23,16 @@ public class BookCategoryControllerTest {
 
     @Test
     void createBookShallWork() {
-        BookCategory ctgy = new BookCategory();
-        ctgy.setCategoryValue(BookCategoryEnum.OWNDEFINED);
-        ctgy.setCategoryName("Test");
+        PersonRole ctgy = new PersonRole();
+        ctgy.setRoleValue(PersonRoleEnum.OWNDEFINED);
+        ctgy.setRoleName("Test");
 
         // Create
-        BookCategory rst = controller.createObject(ctgy);
+        PersonRole rst = controller.createPersonRole(ctgy);
         assertTrue(rst != null);
-        assertTrue(rst.getCategoryName().equals(ctgy.getCategoryName()));
-        assertTrue(rst.getCategoryValue().equals(BookCategoryEnum.OWNDEFINED));
+        assertTrue(rst.getRoleName().equals(ctgy.getRoleName()));
+        assertTrue(rst.getRoleValue().equals(PersonRoleEnum.OWNDEFINED));
 
     }
+    
 }

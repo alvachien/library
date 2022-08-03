@@ -1,7 +1,8 @@
 package com.alvachien.libraryapi.model;
 
 public enum OrganizationTypeEnum {
-    PUBLISHHOUSE( 'A' );
+    PUBLISHHOUSE( 'A' ), 
+    OWNDEFINED('Z');
  
     private final char code;
  
@@ -12,6 +13,9 @@ public enum OrganizationTypeEnum {
     public static OrganizationTypeEnum fromCode(char code) {
         if ( code == 'A' || code == 'a' ) {
             return PUBLISHHOUSE;
+        }
+        if ( code == 'Z' || code == 'z' ) {
+            return OWNDEFINED;
         }
         
         throw new UnsupportedOperationException(

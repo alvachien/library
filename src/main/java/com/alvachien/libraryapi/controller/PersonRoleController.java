@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alvachien.libraryapi.exception.PersonNotFoundException;
 import com.alvachien.libraryapi.exception.PersonRoleNotFoundException;
 import com.alvachien.libraryapi.model.PersonRole;
 import com.alvachien.libraryapi.service.StorageService;

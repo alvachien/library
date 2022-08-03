@@ -8,14 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.alvachien.libraryapi.model.BookCategory;
-import com.alvachien.libraryapi.model.BookCategoryEnum;
+import com.alvachien.libraryapi.model.OrganizationType;
+import com.alvachien.libraryapi.model.OrganizationTypeEnum;
 
 @SpringBootTest
 @ActiveProfiles("unittest")
-public class BookCategoryControllerTest {
+public class OrganizationTypeControllerTest {
     @Autowired
-    private BookCategoryController controller;
+    private OrganizationTypeController controller;
     
     @BeforeEach
     void beforeEach() {        
@@ -23,15 +23,16 @@ public class BookCategoryControllerTest {
 
     @Test
     void createBookShallWork() {
-        BookCategory ctgy = new BookCategory();
-        ctgy.setCategoryValue(BookCategoryEnum.OWNDEFINED);
-        ctgy.setCategoryName("Test");
+        OrganizationType ctgy = new OrganizationType();
+        ctgy.setTypeValue(OrganizationTypeEnum.OWNDEFINED);
+        ctgy.setTypeName("Test");
 
         // Create
-        BookCategory rst = controller.createObject(ctgy);
+        OrganizationType rst = controller.createObject(ctgy);
         assertTrue(rst != null);
-        assertTrue(rst.getCategoryName().equals(ctgy.getCategoryName()));
-        assertTrue(rst.getCategoryValue().equals(BookCategoryEnum.OWNDEFINED));
+        assertTrue(rst.getTypeName().equals(ctgy.getTypeName()));
+        assertTrue(rst.getTypeValue().equals(OrganizationTypeEnum.OWNDEFINED));
 
     }
+    
 }

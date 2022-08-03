@@ -3,7 +3,8 @@ package com.alvachien.libraryapi.model;
 public enum PersonRoleEnum {
     AUTHOR( 'A' ),
     ACTOR( 'B' ),
-    DIRECTOR('C');
+    DIRECTOR('C'),
+    OWNDEFINED('Z');
  
     private final char code;
  
@@ -20,6 +21,9 @@ public enum PersonRoleEnum {
         }
         if ( code == 'C' || code == 'c' ) {
             return DIRECTOR;
+        }
+        if ( code == 'Z' || code == 'z' ) {
+            return OWNDEFINED;
         }
         
         throw new UnsupportedOperationException(
