@@ -29,7 +29,7 @@ public class BookCategoryController {
     // end::get-aggregate-root[]
 
     @PostMapping("/bookcategories")
-    BookCategory newBook(@RequestBody BookCategory newbook) {
+    BookCategory createObject(@RequestBody BookCategory newbook) {
         return this.storage.saveBookCategory(newbook);
     }
 

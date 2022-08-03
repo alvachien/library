@@ -49,6 +49,9 @@ public class StorageService {
     public void deleteBookByID(Long id) {
         this.bookRepository.deleteById(id);
     }
+    public void deleteAllBooks() {
+        this.bookRepository.deleteAll();
+    }
 
     ///
     /// Book categories
@@ -87,6 +90,15 @@ public class StorageService {
     ///
     public List<OrganizationType> findOrganizationTypes() {
         return this.organizationTypeRepository.findAll();
+    }
+    public OrganizationType saveOrganizationType(OrganizationType organization) {
+        return this.organizationTypeRepository.save(organization);
+    }
+    public Optional<OrganizationType> findOrganizationTypeByID(Long id) {
+        return this.organizationTypeRepository.findById(id);
+    }
+    public void deleteOrganizationTypeByID(Long id) {
+        this.organizationTypeRepository.deleteById(id);
     }
 
     ///
