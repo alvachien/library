@@ -14,6 +14,7 @@ import org.apache.olingo.commons.api.edm.provider.CsdlEntityContainer;
 import org.apache.olingo.commons.api.edm.provider.CsdlEntityContainerInfo;
 import org.apache.olingo.commons.api.edm.provider.CsdlEntitySet;
 import org.apache.olingo.commons.api.edm.provider.CsdlEntityType;
+import org.apache.olingo.commons.api.edm.provider.CsdlEnumType;
 import org.apache.olingo.commons.api.edm.provider.CsdlFunction;
 import org.apache.olingo.commons.api.edm.provider.CsdlFunctionImport;
 import org.apache.olingo.commons.api.edm.provider.CsdlNavigationProperty;
@@ -192,14 +193,14 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
 
             // create EntityType properties
             CsdlProperty id = new CsdlProperty().setName("ID")
-                    .setType(EdmPrimitiveTypeKind.Int32.getFullQualifiedName());
+                .setType(EdmPrimitiveTypeKind.Int32.getFullQualifiedName());
             CsdlProperty nativeName = new CsdlProperty().setName("NativeName")
-                    .setType(EdmPrimitiveTypeKind.String.getFullQualifiedName());
+                .setType(EdmPrimitiveTypeKind.String.getFullQualifiedName());
             CsdlProperty chineseName = new CsdlProperty().setName("ChineseName")
-                    .setType(EdmPrimitiveTypeKind.String.getFullQualifiedName());
+                .setType(EdmPrimitiveTypeKind.String.getFullQualifiedName());
             CsdlProperty detail = new CsdlProperty().setName("Detail")
-                    .setType(EdmPrimitiveTypeKind.String.getFullQualifiedName());
-
+                .setType(EdmPrimitiveTypeKind.String.getFullQualifiedName());
+            
             // create CsdlPropertyRef for Key element
             CsdlPropertyRef propertyRef = new CsdlPropertyRef();
             propertyRef.setName("ID");
@@ -210,11 +211,60 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
             entityType.setProperties(Arrays.asList(id, nativeName, chineseName, detail));
             entityType.setKey(Collections.singletonList(propertyRef));
             entityType.setNavigationProperties(Arrays.asList(
-                    new CsdlNavigationProperty().setName("Books").setType(ODataConstants.ET_BOOK_FQN).setCollection(true),
-                    new CsdlNavigationProperty().setName("TranslatedBooks").setType(ODataConstants.ET_BOOK_FQN)
-                            .setCollection(true)));
+                new CsdlNavigationProperty().setName("Books").setType(ODataConstants.ET_BOOK_FQN).setCollection(true),
+                new CsdlNavigationProperty().setName("TranslatedBooks").setType(ODataConstants.ET_BOOK_FQN).setCollection(true),
+                new CsdlNavigationProperty().setName("Roles").setType(ODataConstants.ET_PERSONROLE_FQN).setCollection(true)
+                ));
 
             return entityType;
+        } else if (entityTypeName.equals(ODataConstants.ET_PERSONROLE_FQN)) {
+            // create EntityType properties
+            CsdlProperty id = new CsdlProperty().setName("ID")
+                .setType(EdmPrimitiveTypeKind.Int32.getFullQualifiedName());
+            CsdlProperty roleName = new CsdlProperty().setName("RoleName")
+                .setType(EdmPrimitiveTypeKind.String.getFullQualifiedName());
+            CsdlProperty roleValue = new CsdlProperty().setName("RoleValue")
+                .setType(EdmPrimitiveTypeKind.Int16.getFullQualifiedName());
+            
+            // create CsdlPropertyRef for Key element
+            CsdlPropertyRef propertyRef = new CsdlPropertyRef();
+            propertyRef.setName("ID");
+
+            // configure EntityType
+            CsdlEntityType entityType = new CsdlEntityType();
+            entityType.setName(ODataConstants.ET_PERSONROLE_NAME);
+            entityType.setProperties(Arrays.asList(id, roleName, roleValue));
+            entityType.setKey(Collections.singletonList(propertyRef));
+            entityType.setNavigationProperties(Arrays.asList(
+                new CsdlNavigationProperty().setName("Persons").setType(ODataConstants.ET_PERSON_FQN).setCollection(true)
+                ));
+
+            return entityType;
+
+        } else if (entityTypeName.equals(ODataConstants.ET_BOOKCATEGORY_FQN)) {
+            // create EntityType properties
+            CsdlProperty id = new CsdlProperty().setName("ID")
+                .setType(EdmPrimitiveTypeKind.Int32.getFullQualifiedName());
+            CsdlProperty roleName = new CsdlProperty().setName("RoleName")
+                .setType(EdmPrimitiveTypeKind.String.getFullQualifiedName());
+            CsdlProperty roleValue = new CsdlProperty().setName("RoleValue")
+                .setType(EdmPrimitiveTypeKind.Int16.getFullQualifiedName());
+            
+            // create CsdlPropertyRef for Key element
+            CsdlPropertyRef propertyRef = new CsdlPropertyRef();
+            propertyRef.setName("ID");
+
+            // configure EntityType
+            CsdlEntityType entityType = new CsdlEntityType();
+            entityType.setName(ODataConstants.ET_BOOKCATEGORY_NAME);
+            entityType.setProperties(Arrays.asList(id, roleName, roleValue));
+            entityType.setKey(Collections.singletonList(propertyRef));
+            entityType.setNavigationProperties(Arrays.asList(
+                new CsdlNavigationProperty().setName("Books").setType(ODataConstants.ET_BOOK_FQN).setCollection(true)
+                ));
+
+            return entityType;
+
         } else if (entityTypeName.equals(ODataConstants.ET_BOOK_FQN)) {
             // create EntityType properties
             CsdlProperty id = new CsdlProperty().setName("ID")
@@ -243,10 +293,9 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
                     Arrays.asList(id, nativeName, chineseName, detail, originLanguage, bookLanguage, releasedYear));
             entityType.setKey(Collections.singletonList(propertyRef));
             entityType.setNavigationProperties(Arrays.asList(
-                    new CsdlNavigationProperty().setName("Authors").setType(ODataConstants.ET_PERSON_FQN)
-                            .setCollection(true),
-                    new CsdlNavigationProperty().setName("Translators").setType(ODataConstants.ET_PERSON_FQN)
-                            .setCollection(true)));
+                new CsdlNavigationProperty().setName("Authors").setType(ODataConstants.ET_PERSON_FQN).setCollection(true),
+                new CsdlNavigationProperty().setName("Translators").setType(ODataConstants.ET_PERSON_FQN).setCollection(true)
+                ));
 
             return entityType;
         }
@@ -260,10 +309,18 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
         CsdlSchema schema = new CsdlSchema();
         schema.setNamespace(ODataConstants.NAMESPACE);
 
+        // add enum
+        // List<CsdlEnumType> enumTypes = new ArrayList<>();
+        // CsdlEnumType etype = new CsdlEnumType();
+        // //etype.setMembers(members)
+        // enumTypes.add(new CsdlEnumType() {
+
+        // });
         // add EntityTypes
         List<CsdlEntityType> entityTypes = new ArrayList<CsdlEntityType>();
         entityTypes.add(getEntityType(ODataConstants.ET_PERSON_FQN));
         entityTypes.add(getEntityType(ODataConstants.ET_BOOK_FQN));
+        entityTypes.add(getEntityType(ODataConstants.ET_BOOKCATEGORY_FQN));
         schema.setEntityTypes(entityTypes);
 
         // add EntityContainer

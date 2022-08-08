@@ -19,10 +19,19 @@ public final class ODataConstants {
 	public static final FullQualifiedName ET_PERSON_FQN = new FullQualifiedName(NAMESPACE, ET_PERSON_NAME);
 	public static final String ET_BOOK_NAME = "Book";
 	public static final FullQualifiedName ET_BOOK_FQN = new FullQualifiedName(NAMESPACE, ET_BOOK_NAME);
+	public static final String ET_BOOKCATEGORY_NAME = "Book";
+	public static final FullQualifiedName ET_BOOKCATEGORY_FQN = new FullQualifiedName(NAMESPACE, ET_BOOKCATEGORY_NAME);
+	public static final String ET_PERSONROLE_NAME = "PersonRole";
+	public static final FullQualifiedName ET_PERSONROLE_FQN = new FullQualifiedName(NAMESPACE, ET_PERSONROLE_NAME);
+	public static final String ET_ORGANIZATION_NAME = "Organization";
+	public static final FullQualifiedName ET_ORGANIZATION_FQN = new FullQualifiedName(NAMESPACE, ET_ORGANIZATION_NAME);
 
 	// Entity Set Names
 	public static final String ES_PERSONS_NAME = "Persons";
 	public static final String ES_BOOKS_NAME = "Books";
+	public static final String ES_BOOKCATEGORIESS_NAME = "BookCategories";
+	public static final String ES_PERSONROLES_NAME = "PersonRoles";
+	public static final String ES_ORGANIZATION_NAME = "Organizations";
 
 	// Action
 	public static final String ACTION_RESET = "Reset";

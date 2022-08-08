@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.alvachien</groupId>
 	<artifactId>libraryapi</artifactId>
-	<version>0.0.7-SNAPSHOT</version>
+	<version>0.0.10-SNAPSHOT</version>
 	<name>Library API</name>
 	<description>OData API for Library, built with Spring Boot and Olingo</description>
 	<properties>
