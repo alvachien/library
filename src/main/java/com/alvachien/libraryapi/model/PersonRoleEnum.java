@@ -1,37 +1,37 @@
 package com.alvachien.libraryapi.model;
 
 public enum PersonRoleEnum {
-    AUTHOR( 'A' ),
-    ACTOR( 'B' ),
-    DIRECTOR('C'),
-    OWNDEFINED('Z');
+    AUTHOR( 1 ),
+    ACTOR( 2 ),
+    DIRECTOR(3),
+    OWNDEFINED(-1);
  
-    private final char code;
+    private final int code;
  
-    PersonRoleEnum(char code) {
+    PersonRoleEnum(int code) {
         this.code = code;
     }
  
-    public static PersonRoleEnum fromCode(char code) {
-        if ( code == 'A' || code == 'a' ) {
+    public static PersonRoleEnum fromCode(int code) {
+        if ( code == 1 ) {
             return AUTHOR;
         }
-        if ( code == 'B' || code == 'b' ) {
+        if ( code == 2 ) {
             return ACTOR;
         }
-        if ( code == 'C' || code == 'c' ) {
+        if ( code == 3 ) {
             return DIRECTOR;
         }
-        if ( code == 'Z' || code == 'z' ) {
+        if ( code == -1) {
             return OWNDEFINED;
         }
         
         throw new UnsupportedOperationException(
-                "The code " + code + " is not supported!"
+            "The code " + code + " is not supported!"
         );
     }
  
-    public char getCode() {
+    public int getCode() {
         return code;
     }
 }

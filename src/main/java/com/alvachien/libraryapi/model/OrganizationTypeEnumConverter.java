@@ -2,10 +2,10 @@ package com.alvachien.libraryapi.model;
 
 import javax.persistence.AttributeConverter;
 
-public class OrganizationTypeEnumConverter implements AttributeConverter<OrganizationTypeEnum, Character> {
+public class OrganizationTypeEnumConverter implements AttributeConverter<OrganizationTypeEnum, Integer> {
  
     @Override
-    public Character convertToDatabaseColumn(OrganizationTypeEnum role) {
+    public Integer convertToDatabaseColumn(OrganizationTypeEnum role) {
         if ( role == null ) {
             return null;
         }
@@ -14,7 +14,7 @@ public class OrganizationTypeEnumConverter implements AttributeConverter<Organiz
     }
  
     @Override
-    public OrganizationTypeEnum convertToEntityAttribute(Character value) {
+    public OrganizationTypeEnum convertToEntityAttribute(Integer value) {
         if ( value == null ) {
             return null;
         }

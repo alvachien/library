@@ -1,29 +1,29 @@
 package com.alvachien.libraryapi.model;
 
 public enum OrganizationTypeEnum {
-    PUBLISHHOUSE( 'A' ), 
-    OWNDEFINED('Z');
+    PUBLISHHOUSE( 1 ), 
+    OWNDEFINED(-1);
  
-    private final char code;
+    private final int code;
  
-    OrganizationTypeEnum(char code) {
+    OrganizationTypeEnum(int code) {
         this.code = code;
     }
  
-    public static OrganizationTypeEnum fromCode(char code) {
-        if ( code == 'A' || code == 'a' ) {
+    public static OrganizationTypeEnum fromCode(int code) {
+        if ( code == 1) {
             return PUBLISHHOUSE;
         }
-        if ( code == 'Z' || code == 'z' ) {
+        if ( code == -1 ) {
             return OWNDEFINED;
         }
         
         throw new UnsupportedOperationException(
-                "The code " + code + " is not supported!"
+            "The code " + code + " is not supported!"
         );
     }
  
-    public char getCode() {
+    public int getCode() {
         return code;
     }    
 }

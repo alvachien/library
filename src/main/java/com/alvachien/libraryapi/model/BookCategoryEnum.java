@@ -1,27 +1,29 @@
 package com.alvachien.libraryapi.model;
 
-
 public enum BookCategoryEnum {
-    NOVEL( 'N' ),
-    OWNDEFINED('Z');
+    NOVEL( 1 ),
+    OWNDEFINED(-1);
  
-    private final char code;
+    private final int code;
  
-    BookCategoryEnum(char code) {
+    BookCategoryEnum(int code) {
         this.code = code;
     }
  
-    public static BookCategoryEnum fromCode(char code) {
-        if ( code == 'N' || code == 'n' ) {
+    public static BookCategoryEnum fromCode(int code) {
+        if ( code == 1 ) {
             return NOVEL;
+        }
+        if (code == -1) {
+            return OWNDEFINED;
         }
         
         throw new UnsupportedOperationException(
-                "The code " + code + " is not supported!"
+            "The code " + code + " is not supported!"
         );
     }
  
-    public char getCode() {
+    public int getCode() {
         return code;
     }
     

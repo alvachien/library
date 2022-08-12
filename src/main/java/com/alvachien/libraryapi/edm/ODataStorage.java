@@ -35,15 +35,12 @@ import org.apache.olingo.server.api.uri.UriResourceNavigation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.alvachien.libraryapi.repository.BookRepository;
-import com.alvachien.libraryapi.repository.PersonRepository;
+import com.alvachien.libraryapi.service.StorageService;
 
 //@Component
 public class ODataStorage {
     @Autowired
-    private PersonRepository personRepository;
-    @Autowired
-    private BookRepository bookRepository;
+    private StorageService storageService;
     final private Edm edm;
     final private OData odata;
     final private TransactionalEntityManager manager;
@@ -85,7 +82,7 @@ public class ODataStorage {
     public EntityCollection readFunctionImportCollection(final UriResourceFunction uriResourceFunction,
             final ServiceMetadata serviceMetadata) throws ODataApplicationException {
 
-        if (com.alvachien.libraryapi.edm.ODataConstants.FUNCTION_COUNT_CATEGORIES.equals(uriResourceFunction.getFunctionImport().getName())) {
+        if (ODataConstants.FUNCTION_COUNT_CATEGORIES.equals(uriResourceFunction.getFunctionImport().getName())) {
             // Get the parameter of the function
             final UriParameter parameterAmount = uriResourceFunction.getParameters().get(0);
             // Try to convert the parameter to an Integer.
@@ -153,10 +150,10 @@ public class ODataStorage {
 
     public EntityCollection readEntitySetData(EdmEntitySet edmEntitySet) throws ODataApplicationException {
 
-        if (edmEntitySet.getName().equals(com.alvachien.libraryapi.edm.ODataConstants.ES_PERSONS_NAME)) {
-            return getEntityCollection(manager.getEntityCollection(com.alvachien.libraryapi.edm.ODataConstants.ES_PERSONS_NAME));
-        } else if (edmEntitySet.getName().equals(com.alvachien.libraryapi.edm.ODataConstants.ES_BOOKS_NAME)) {
-            return getEntityCollection(manager.getEntityCollection(com.alvachien.libraryapi.edm.ODataConstants.ES_BOOKS_NAME));
+        if (edmEntitySet.getName().equals(ODataConstants.ES_PERSONS_NAME)) {
+            return getEntityCollection(manager.getEntityCollection(ODataConstants.ES_PERSONS_NAME));
+        } else if (edmEntitySet.getName().equals(ODataConstants.ES_BOOKS_NAME)) {
+            return getEntityCollection(manager.getEntityCollection(ODataConstants.ES_BOOKS_NAME));
         }
 
         return null;
