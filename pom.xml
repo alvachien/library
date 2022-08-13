@@ -13,14 +13,28 @@
 	<version>0.0.10-SNAPSHOT</version>
 	<name>Library API</name>
 	<description>OData API for Library, built with Spring Boot and Olingo</description>
+
 	<properties>
+        <eclipselink.version>2.7.9</eclipselink.version>
+        <jpa.version>2.2.1</jpa.version>
 		<java.version>11</java.version>
-		<olingo.version>4.9.0</olingo.version>
+		<processor.version>1.0.9-SNAPSHOT</processor.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-entitymanager</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-core</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -43,28 +57,34 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>odata-commons-api</artifactId>
-			<version>${olingo.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>odata-commons-core</artifactId>
-			<version>${olingo.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>odata-server-api</artifactId>
-			<version>${olingo.version}</version>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>javax.persistence</artifactId>
+			<version>${jpa.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>odata-server-core</artifactId>
-			<version>${olingo.version}</version>
-			<scope>runtime</scope>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
+			<version>${eclipselink.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.sap.olingo</groupId>
+			<artifactId>odata-jpa-processor</artifactId>
+			<version>${processor.version}</version>
+		</dependency>
+        <dependency>
+            <groupId>com.sap.olingo</groupId>
+            <artifactId>odata-jpa-processor-cb</artifactId>
+            <version>${processor.version}</version>
+        </dependency>         
+		<dependency>
+			<groupId>com.sap.olingo</groupId>
+			<artifactId>odata-jpa-spring-support</artifactId>
+			<version>${processor.version}</version>
+		</dependency>			
 	</dependencies>
 
 	<build>
