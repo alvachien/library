@@ -1,33 +1,27 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+**/gen/
+**/edmx/
+*.db
+schema.sql
+default-env.json
 
-### STS ###
-.apt_generated
+**/bin/
+**/target/
+.flattened-pom.xml
 .classpath
-.factorypath
 .project
 .settings
-.springBeans
-.sts4-cache
 
-### IntelliJ IDEA ###
-.idea
-*.iws
+**/node/
+**/node_modules/
+
+**/.mta/
+*.mtar
+
+*.log*
+gc_history*
+hs_err*
+*.tgz
 *.iml
-*.ipr
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
+.vscode
+.idea
