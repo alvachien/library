@@ -4,10 +4,10 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmEnumeration;
 
 @EdmEnumeration
 public enum PersonRoleEnum {
+    OWNDEFINED(0),
     AUTHOR( 1 ),
     ACTOR( 2 ),
-    DIRECTOR(3),
-    OWNDEFINED(-1);
+    DIRECTOR(3);
  
     private final int code;
  
@@ -25,7 +25,7 @@ public enum PersonRoleEnum {
         if ( code == 3 ) {
             return DIRECTOR;
         }
-        if ( code == -1) {
+        if ( code == 0) {
             return OWNDEFINED;
         }
         

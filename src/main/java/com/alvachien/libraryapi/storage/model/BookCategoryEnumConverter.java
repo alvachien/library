@@ -1,26 +1,18 @@
 package com.alvachien.libraryapi.storage.model;
 import javax.persistence.AttributeConverter;
+
 import javax.persistence.Converter;
 
-@Converter(autoApply = true)
+@Converter(autoApply = false)
 public class BookCategoryEnumConverter implements AttributeConverter<BookCategoryEnum, Integer> {
  
     @Override
-    public Integer convertToDatabaseColumn(BookCategoryEnum role) {
-        if ( role == null ) {
-            return null;
-        }
- 
-        return role.getCode();
+    public Integer convertToDatabaseColumn(final BookCategoryEnum role) {
+        return role == null ? null : role.getCode();
     }
  
     @Override
-    public BookCategoryEnum convertToEntityAttribute(Integer value) {
-        if ( value == null ) {
-            return null;
-        }
- 
-        return BookCategoryEnum.fromCode( value );
-    }
-    
+    public BookCategoryEnum convertToEntityAttribute(final Integer value) {
+        return value == null ? null : BookCategoryEnum.fromCode(value);
+    }    
 }

@@ -20,6 +20,7 @@ static:
     request_mapping_path: "apis/${static.api.path_prefix}"
 server:
     port: 9010
+    default_response_type: json
 spring:
     autoconfigure:
         exclude:

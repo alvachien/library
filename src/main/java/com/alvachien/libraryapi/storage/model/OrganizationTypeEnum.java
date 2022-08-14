@@ -4,8 +4,8 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmEnumeration;
 
 @EdmEnumeration
 public enum OrganizationTypeEnum {
-    PUBLISHHOUSE( 1 ), 
-    OWNDEFINED(-1);
+    OWNDEFINED(0),
+    PUBLISHHOUSE( 1 );
  
     private final int code;
  
@@ -17,7 +17,7 @@ public enum OrganizationTypeEnum {
         if ( code == 1) {
             return PUBLISHHOUSE;
         }
-        if ( code == -1 ) {
+        if ( code == 0 ) {
             return OWNDEFINED;
         }
         

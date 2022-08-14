@@ -21,7 +21,7 @@ public class PersonRole {
     @Column(name = "id")
     private Long id;
 
-    @Column(name="role_value", nullable = false)
+    @Column(name="role_value", nullable = false, columnDefinition = "INT")
     @Convert(converter = PersonRoleEnumConverter.class)
     private PersonRoleEnum roleValue;
 

@@ -8,20 +8,12 @@ public class PersonRoleEnumConverter implements AttributeConverter<PersonRoleEnu
  
     @Override
     public Integer convertToDatabaseColumn(PersonRoleEnum role) {
-        if ( role == null ) {
-            return null;
-        }
- 
-        return role.getCode();
+        return role == null ? null : role.getCode();
     }
  
     @Override
     public PersonRoleEnum convertToEntityAttribute(Integer value) {
-        if ( value == null ) {
-            return null;
-        }
- 
-        return PersonRoleEnum.fromCode( value );
+        return value == null ? null : PersonRoleEnum.fromCode( value );
     }
 }
 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Convert;
 
 @Entity
 @Table(name = "book_ctgy_def")
@@ -21,7 +21,7 @@ public class BookCategory {
     @Column(name = "id")
     private Long id;
 
-    @Column(name="category_value", nullable = false)
+    @Column(name="category_value", nullable = false, columnDefinition = "INT")
     @Convert(converter = BookCategoryEnumConverter.class)
     private BookCategoryEnum categoryValue;
 

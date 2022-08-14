@@ -20,7 +20,7 @@ public class OrganizationType {
     @Column(name = "id")
     private Long id;
 
-    @Column(name="type_value", nullable = false)
+    @Column(name="type_value", nullable = false, columnDefinition = "INT")
     @Convert(converter = OrganizationTypeEnumConverter.class)
     private OrganizationTypeEnum typeValue;
 

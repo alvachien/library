@@ -7,21 +7,12 @@ import javax.persistence.Converter;
 public class OrganizationTypeEnumConverter implements AttributeConverter<OrganizationTypeEnum, Integer> {
  
     @Override
-    public Integer convertToDatabaseColumn(OrganizationTypeEnum role) {
-        if ( role == null ) {
-            return null;
-        }
- 
-        return role.getCode();
+    public Integer convertToDatabaseColumn(OrganizationTypeEnum evalue) {
+        return evalue == null ? null : evalue.getCode();
     }
  
     @Override
     public OrganizationTypeEnum convertToEntityAttribute(Integer value) {
-        if ( value == null ) {
-            return null;
-        }
- 
-        return OrganizationTypeEnum.fromCode( value );
-    }
-    
+        return value == null ? null : OrganizationTypeEnum.fromCode( value );
+    }    
 }

@@ -4,8 +4,8 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmEnumeration;
 
 @EdmEnumeration
 public enum BookCategoryEnum {
-    NOVEL( 1 ),
-    OWNDEFINED(-1);
+    OWNDEFINED(  0 ),
+    NOVEL( 1 );
  
     private final int code;
  
@@ -13,21 +13,18 @@ public enum BookCategoryEnum {
         this.code = code;
     }
  
-    public static BookCategoryEnum fromCode(int code) {
+    public static BookCategoryEnum fromCode(final int code) {
         if ( code == 1 ) {
-            return NOVEL;
+            return BookCategoryEnum.NOVEL;
         }
-        if (code == -1) {
-            return OWNDEFINED;
+        if (code == 0) {
+            return BookCategoryEnum.OWNDEFINED;
         }
         
-        throw new UnsupportedOperationException(
-            "The code " + code + " is not supported!"
-        );
+        throw new UnsupportedOperationException("The code " + code + " is not supported!");
     }
  
     public int getCode() {
         return code;
-    }
-    
+    }    
 }
