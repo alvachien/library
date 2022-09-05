@@ -18,6 +18,7 @@
         <eclipselink.version>2.7.9</eclipselink.version>
         <jpa.version>2.2.1</jpa.version>
 		<java.version>11</java.version>
+		<odata.version>4.9.0</odata.version>
 		<processor.version>1.0.9-SNAPSHOT</processor.version>
 	</properties>
 
@@ -47,21 +48,79 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+        <dependency>
+            <groupId>org.apache.olingo</groupId>
+            <artifactId>odata-commons-api</artifactId>
+            <version>${odata.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.olingo</groupId>
+            <artifactId>odata-server-api</artifactId>
+            <version>${odata.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.olingo</groupId>
+            <artifactId>odata-server-core</artifactId>
+            <version>${odata.version}</version>
+        </dependency>
+
+		<dependency>
+			<groupId>com.sap.olingo</groupId>
+			<artifactId>odata-jpa-annotation</artifactId>
+			<version>${processor.version}</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/odata-jpa-annotation-${processor.version}.jar</systemPath> 
+		</dependency>
+		<dependency>
+			<groupId>com.sap.olingo</groupId>
+			<artifactId>odata-jpa-metadata</artifactId>
+			<version>${processor.version}</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/odata-jpa-metadata-${processor.version}.jar</systemPath> 
+		</dependency>
 		<dependency>
 			<groupId>com.sap.olingo</groupId>
 			<artifactId>odata-jpa-processor</artifactId>
 			<version>${processor.version}</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/odata-jpa-processor-${processor.version}.jar</systemPath> 
 		</dependency>
         <dependency>
             <groupId>com.sap.olingo</groupId>
             <artifactId>odata-jpa-processor-cb</artifactId>
             <version>${processor.version}</version>
-        </dependency>         
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/odata-jpa-processor-cb-${processor.version}.jar</systemPath> 
+        </dependency>
+        <dependency>
+            <groupId>com.sap.olingo</groupId>
+            <artifactId>odata-jpa-processor-ext</artifactId>
+            <version>${processor.version}</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/odata-jpa-processor-ext-${processor.version}.jar</systemPath> 
+        </dependency>
+        <dependency>
+            <groupId>com.sap.olingo</groupId>
+            <artifactId>odata-jpa-processor-parallel</artifactId>
+            <version>${processor.version}</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/odata-jpa-processor-parallel-${processor.version}.jar</systemPath> 
+        </dependency>
 		<dependency>
 			<groupId>com.sap.olingo</groupId>
 			<artifactId>odata-jpa-spring-support</artifactId>
 			<version>${processor.version}</version>
-		</dependency>			
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/odata-jpa-spring-support-${processor.version}.jar</systemPath> 
+		</dependency>
+		<dependency>
+			<groupId>com.sap.olingo</groupId>
+			<artifactId>odata-jpa-test</artifactId>
+			<version>${processor.version}</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/odata-jpa-test-${processor.version}.jar</systemPath> 
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -70,6 +129,23 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/libs</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>			
 		</plugins>
 	</build>
 </project>
