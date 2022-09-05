@@ -32,9 +32,9 @@ spring:
             minimumIdle: 1
             idleTimeout: 60000
             maximumPoolSize: 5
+    jpa:
+        show-sql: true
     servlet:
         multipart:
             enabled: false
-        jpa:
-            show-sql: true
 

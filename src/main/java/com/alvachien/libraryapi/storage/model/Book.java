@@ -1,7 +1,9 @@
 package com.alvachien.libraryapi.storage.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,7 +47,7 @@ public class Book {
         name="book_author", 
         joinColumns={@JoinColumn(name="book_id",referencedColumnName="id")},
         inverseJoinColumns={@JoinColumn(name="author_id",referencedColumnName="id")} )
-    private List<Person> authors;
+    private Set<Person> authors;
 
     // @ManyToMany(fetch=FetchType.EAGER)
     // @JoinTable(
@@ -59,20 +61,20 @@ public class Book {
         name="book_press", 
         joinColumns={@JoinColumn(name="book_id",referencedColumnName="id")},
         inverseJoinColumns={@JoinColumn(name="org_id",referencedColumnName="id")} )
-    private List<Organization> publishHouses;
+    private Set<Organization> publishHouses;
 
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
         name="book_category", 
         joinColumns={@JoinColumn(name="book_id",referencedColumnName="id")},
         inverseJoinColumns={@JoinColumn(name="ctgy_id",referencedColumnName="id")} )
-    private List<BookCategory> categories;
+    private Set<BookCategory> categories;
 
     public Book() {
-        this.authors = new ArrayList<>();
+        this.authors = new HashSet<>();
         // this.translators = new ArrayList<>();
-        this.publishHouses = new ArrayList<>();
-        this.categories = new ArrayList<>();
+        this.publishHouses = new HashSet<>();
+        this.categories = new HashSet<>();
     }
     public Long getId() {
         return id;
@@ -145,11 +147,11 @@ public class Book {
         this.pageCount = pageCount;
     }
 
-    public List<Organization> getPublishHouses() {
+    public Set<Organization> getPublishHouses() {
         return publishHouses;
     }
 
-    public List<Person> getAuthors() {
+    public Set<Person> getAuthors() {
         return authors;
     }
 
@@ -157,7 +159,7 @@ public class Book {
     //     return translators;
     // }
 
-    public List<BookCategory> getBookCategories() {
+    public Set<BookCategory> getBookCategories() {
         return this.categories;
     }
 }

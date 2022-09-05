@@ -1,7 +1,9 @@
 package com.alvachien.libraryapi.storage.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,10 +31,10 @@ public class BookCategory {
     private String categoryName;
 
     @ManyToMany(fetch=FetchType.LAZY, mappedBy="categories")
-    private List<Book> books;
+    private Set<Book> books;
 
     public BookCategory() {
-        this.books = new ArrayList<>();
+        this.books = new HashSet<>();
     }
 
     public Long getId() {
@@ -51,7 +53,7 @@ public class BookCategory {
         this.categoryValue = categoryValue;
     }
 
-    public List<Book> getBooks() {
+    public Set<Book> getBooks() {
         return books;
     }
 

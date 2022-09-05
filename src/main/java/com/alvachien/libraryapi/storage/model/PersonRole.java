@@ -1,7 +1,9 @@
 package com.alvachien.libraryapi.storage.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -29,10 +31,10 @@ public class PersonRole {
     private String roleName;
 
     @ManyToMany(fetch=FetchType.LAZY, mappedBy="roles")
-    private List<Person> persons;
+    private Set<Person> persons;
 
     public PersonRole() {
-        this.persons = new ArrayList<>();
+        this.persons = new HashSet<>();
     }
 
     public Long getId() {
@@ -59,7 +61,7 @@ public class PersonRole {
         this.roleName = roleName;
     }
 
-    public List<Person> getPersons() {
+    public Set<Person> getPersons() {
         return persons;
     }
    

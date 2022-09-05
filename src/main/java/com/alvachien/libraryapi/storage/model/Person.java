@@ -1,8 +1,10 @@
 package com.alvachien.libraryapi.storage.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +33,7 @@ public class Person {
     private String detail;
 
     @ManyToMany(fetch=FetchType.EAGER, mappedBy="authors")
-    private List<Book> books;
+    private Set<Book> books;
 
     // @ManyToMany(fetch=FetchType.EAGER, mappedBy="translators")
     // private List<Book> translatedbooks;
@@ -41,11 +43,11 @@ public class Person {
         name="person_roles", 
         joinColumns={ @JoinColumn(name = "person_id", referencedColumnName = "id") },
         inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName = "id") } )
-    private List<PersonRole> roles;
+    private Set<PersonRole> roles;
 
     public Person() {
-        this.roles = new ArrayList<>();
-        this.books = new ArrayList<>();
+        this.roles = new HashSet<>();
+        this.books = new HashSet<>();
     }
 
     public Person(String nativeName, String chineseName, String detail) {
@@ -87,7 +89,7 @@ public class Person {
         this.detail = detail;
     }
 
-    public List<Book> getBooks() {
+    public Set<Book> getBooks() {
         return books;
     }
 
@@ -95,7 +97,7 @@ public class Person {
     //     return translatedbooks;
     // }
 
-    public List<PersonRole> getRoles() {
+    public Set<PersonRole> getRoles() {
         return this.roles;
     }
 

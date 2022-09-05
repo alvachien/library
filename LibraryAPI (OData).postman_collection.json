@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "54e782d3-2032-4d97-be34-93a15c533123",
+		"name": "LibraryAPI (OData)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Books",
+			"item": []
+		},
+		{
+			"name": "Persons",
+			"item": []
+		},
+		{
+			"name": "BookCategories",
+			"item": [
+				{
+					"name": "Get Entity Set",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9010/apis/v1/BookCategories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9010",
+							"path": [
+								"apis",
+								"v1",
+								"BookCategories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OrganizationTypes",
+			"item": [
+				{
+					"name": "Get Entity Set",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9010/apis/v1/OrganizationTypes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9010",
+							"path": [
+								"apis",
+								"v1",
+								"OrganizationTypes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TypeName\": \"Test\",\r\n    \"TypeValue\": \"0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9010/apis/v1/OrganizationTypes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9010",
+							"path": [
+								"apis",
+								"v1",
+								"OrganizationTypes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PersonRoles",
+			"item": [
+				{
+					"name": "Get Entity Set",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9010/apis/v1/PersonRoles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9010",
+							"path": [
+								"apis",
+								"v1",
+								"PersonRoles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Metadata",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

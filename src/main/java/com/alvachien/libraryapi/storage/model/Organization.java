@@ -1,7 +1,9 @@
 package com.alvachien.libraryapi.storage.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,14 +33,14 @@ public class Organization {
         name="organization_types", 
         joinColumns={ @JoinColumn(name = "org_id", referencedColumnName = "id") },
         inverseJoinColumns={ @JoinColumn(name="type_id",referencedColumnName="id") } )
-    private List<OrganizationType> orgtypes;
+    private Set<OrganizationType> orgtypes;
 
     @ManyToMany(mappedBy="publishHouses")
-    public List<Book> books;
+    public Set<Book> books;
     
     public Organization() {
-        this.orgtypes = new ArrayList<>();
-        this.books = new ArrayList<>();
+        this.orgtypes = new HashSet<>();
+        this.books = new HashSet<>();
     }
 
     public Long getId() {
@@ -60,11 +62,11 @@ public class Organization {
         this.chineseName = chineseName;
     }
 
-    public List<Book> getBooks() {
+    public Set<Book> getBooks() {
         return this.books;
     }
 
-    public List<OrganizationType> getOrganizationTypes() {
+    public Set<OrganizationType> getOrganizationTypes() {
         return this.orgtypes;
     }
 
