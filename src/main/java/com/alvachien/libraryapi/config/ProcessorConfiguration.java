@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Scope;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContext;
 import com.sap.olingo.jpa.processor.core.api.JPAODataServiceContext;
 import com.sap.olingo.jpa.processor.core.api.JPAODataSessionContextAccess;
-import com.sap.olingo.jpa.processor.core.api.example.JPAExampleCUDRequestHandler;
 
 @Configuration
 @ComponentScan
@@ -44,7 +43,7 @@ public class ProcessorConfiguration {
   public JPAODataRequestContext requestContext() {
 
     return JPAODataRequestContext.with()
-        .setCUDRequestHandler(new JPAExampleCUDRequestHandler())
+        .setCUDRequestHandler(new JPACUDRequestHandler())
         .setDebugSupport(new DefaultDebugSupport())
         .build();
   }

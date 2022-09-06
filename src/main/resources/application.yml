@@ -22,9 +22,6 @@ server:
     port: 9010
     default_response_type: json
 spring:
-    autoconfigure:
-        exclude:
-            - org.springframework.boot.actuate.autoconfigure.metrics.orm.jpa.HibernateMetricsAutoConfiguration
     datasource:
         driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
         url: jdbc:sqlserver://localhost;database=library;integratedSecurity=true;encrypt=true;trustServerCertificate=true
@@ -34,6 +31,8 @@ spring:
             maximumPoolSize: 5
     jpa:
         show-sql: true
+        hibernate:
+            ddl-auto: update
     servlet:
         multipart:
             enabled: false

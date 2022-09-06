@@ -66,6 +66,12 @@
         </dependency>
 
 		<dependency>
+			<groupId>net.oneandone.reflections8</groupId>
+			<artifactId>reflections8</artifactId>
+			<version>0.11.7</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.sap.olingo</groupId>
 			<artifactId>odata-jpa-annotation</artifactId>
 			<version>${processor.version}</version>
