@@ -22,14 +22,17 @@ import javax.servlet.http.HttpServletResponse;
 public class ODataController {
 
     @Autowired
-    private JPAODataSessionContextAccess serviceContext;
+    private JPAODataSessionContextAccess odataSessionContext;
     @Autowired
-    private JPAODataRequestContext requestContext;
+    private JPAODataRequestContext odataRequestContext;
 
     @RequestMapping(value = "**", method = { RequestMethod.GET, RequestMethod.PATCH, // NOSONAR
             RequestMethod.POST, RequestMethod.DELETE })
     public void crud(final HttpServletRequest req, final HttpServletResponse resp) throws ODataException {
 
-        new JPAODataRequestHandler(serviceContext, requestContext).process(req, resp);
+        System.out.println(odataSessionContext.getDatabaseProcessor().getClass().getName());
+        System.out.println(odataRequestContext.getCUDRequestHandler().getClass().getName());
+
+        new JPAODataRequestHandler(odataSessionContext, odataRequestContext).process(req, resp);
     }
 }

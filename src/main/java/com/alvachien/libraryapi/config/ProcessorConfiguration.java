@@ -9,7 +9,6 @@ import org.apache.olingo.server.api.debug.DefaultDebugSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
@@ -18,7 +17,6 @@ import com.sap.olingo.jpa.processor.core.api.JPAODataServiceContext;
 import com.sap.olingo.jpa.processor.core.api.JPAODataSessionContextAccess;
 
 @Configuration
-@ComponentScan
 public class ProcessorConfiguration {
   @Value("${odata.jpa.punit_name}")
   private String punit;
@@ -26,21 +24,24 @@ public class ProcessorConfiguration {
   private String rootPackages;
   @Value("${odata.jpa.request_mapping_path}")
   private String requestMappingPath;
+  // Database
+  final private JPASQLServerDatabaseProcessor processor = new JPASQLServerDatabaseProcessor();
 
   @Bean
-  public JPAODataSessionContextAccess sessionContext(@Autowired final EntityManagerFactory emf) throws ODataException {
+  public JPAODataSessionContextAccess odataSessionContext(@Autowired final EntityManagerFactory emf) throws ODataException {
 
     return JPAODataServiceContext.with()
         .setPUnit(punit)
         .setEntityManagerFactory(emf)
         .setTypePackage(rootPackages)
         .setRequestMappingPath(requestMappingPath)
+        .setDatabaseProcessor(processor)
         .build();
   }
   
   @Bean
   @Scope(scopeName = SCOPE_REQUEST)
-  public JPAODataRequestContext requestContext() {
+  public JPAODataRequestContext odataRequestContext() {
 
     return JPAODataRequestContext.with()
         .setCUDRequestHandler(new JPACUDRequestHandler())
