@@ -48,8 +48,7 @@ public final class ODataConstants {
 
 	// Function
 	public static final String FUNCTION_COUNT_CATEGORIES = "CountCategories";
-	public static final FullQualifiedName FUNCTION_COUNT_CATEGORIES_FQN = new FullQualifiedName(NAMESPACE,
-			FUNCTION_COUNT_CATEGORIES);
+	public static final FullQualifiedName FUNCTION_COUNT_CATEGORIES_FQN = new FullQualifiedName(NAMESPACE, FUNCTION_COUNT_CATEGORIES);
 
 	// Function/Action Parameters
 	public static final String PARAMETER_AMOUNT = "Amount";

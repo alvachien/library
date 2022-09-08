@@ -161,7 +161,7 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
         if (entityContainer.equals(ODataConstants.CONTAINER)) {
             if (entitySetName.equals(ODataConstants.ES_PERSONS_NAME)) {
                 CsdlEntitySet entitySet = new CsdlEntitySet();
-                entitySet.setName(ODataConstants.ES_PERSONS_NAME);
+                entitySet.setName(entitySetName);
                 entitySet.setType(ODataConstants.ET_PERSON_FQN);
 
                 CsdlNavigationPropertyBinding navAuthorBinding = new CsdlNavigationPropertyBinding();
@@ -174,7 +174,7 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
                 return entitySet;
             } else if (entitySetName.equals(ODataConstants.ES_BOOKS_NAME)) {
                 CsdlEntitySet entitySet = new CsdlEntitySet();
-                entitySet.setName(ODataConstants.ES_BOOKS_NAME);
+                entitySet.setName(entitySetName);
                 entitySet.setType(ODataConstants.ET_BOOK_FQN);
                 CsdlNavigationPropertyBinding navAuthorBinding = new CsdlNavigationPropertyBinding();
                 navAuthorBinding.setPath(ODataConstants.ET_BOOK_NAME); // the path from entity type to navigation property
@@ -183,6 +183,33 @@ public class LibraryEdmProvider extends CsdlAbstractEdmProvider {
                 navPropBindingList.add(navAuthorBinding);
                 entitySet.setNavigationPropertyBindings(navPropBindingList);
 
+                return entitySet;
+            } else if (entitySetName.equals(ODataConstants.ES_BOOKCATEGORIESS_NAME)) {
+                CsdlEntitySet entitySet = new CsdlEntitySet();
+                entitySet.setName(entitySetName);
+                entitySet.setType(ODataConstants.ET_BOOK_FQN);
+                CsdlNavigationPropertyBinding navAuthorBinding = new CsdlNavigationPropertyBinding();
+                navAuthorBinding.setPath(ODataConstants.ET_BOOK_NAME); // the path from entity type to navigation property
+                navAuthorBinding.setTarget(ODataConstants.ET_PERSON_NAME); // target entitySet, where the nav prop points to
+                List<CsdlNavigationPropertyBinding> navPropBindingList = new ArrayList<CsdlNavigationPropertyBinding>();
+                navPropBindingList.add(navAuthorBinding);
+                entitySet.setNavigationPropertyBindings(navPropBindingList);
+
+                return entitySet;
+            } else if (entitySetName.equals(ODataConstants.ES_PERSONROLES_NAME)) {
+                CsdlEntitySet entitySet = new CsdlEntitySet();
+                entitySet.setName(entitySetName);
+                entitySet.setType(ODataConstants.ET_PERSONROLE_FQN);
+                return entitySet;
+            } else if (entitySetName.equals(ODataConstants.ES_ORGANIZATIONS_NAME)) {
+                CsdlEntitySet entitySet = new CsdlEntitySet();
+                entitySet.setName(entitySetName);
+                entitySet.setType(ODataConstants.ET_ORGANIZATION_FQN);
+                return entitySet;
+            } else if (entitySetName.equals(ODataConstants.ES_ORGANIZATIONTYPES_NAME)) {
+                CsdlEntitySet entitySet = new CsdlEntitySet();
+                entitySet.setName(entitySetName);
+                entitySet.setType(ODataConstants.ET_ORGANIZATIONTYPE_FQN);
                 return entitySet;
             }
         }
